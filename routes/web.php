@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//dataController routes
+Route::get('/getData', [DataController::class, 'allData'])
+    ->name('allData');
+
+Route::get('/getPostsComments', [DataController::class, 'getPostsWithComments'])
+    ->name('getPostsWithComments');
+
+//MailController Routes
+
+//Route::get('/sendMail', [MailController::class, 'sendMailOnPost'])->name('sendMailOnPost');
