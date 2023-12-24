@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Mail\myNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class Comment extends Model {
     /**
@@ -22,4 +24,15 @@ class Comment extends Model {
     }
 
     use HasFactory;
+
+    public static function boot() {
+        parent::boot();
+
+        static::created(function ($comment) {
+            $post = $comment->post;
+            $authorEmail = $post->author;
+
+            Mail::to($authorEmail)->send(new myNotification($post, $comment));
+        });
+    }
 }

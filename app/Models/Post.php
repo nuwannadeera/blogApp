@@ -12,7 +12,7 @@ class Post extends Model {
      */
     protected $table = 'posts';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'content', 'image'];
+    protected $fillable = ['title', 'content', 'image', 'author'];
 
     /**
      * Get the comments record associated with the post.
