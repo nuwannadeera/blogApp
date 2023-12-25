@@ -12,14 +12,14 @@
     Hello....,
 </p>
 <p>
-    A new comment has been posted on your post "{{ $post->title }}".
+    You added new post about "{{ $post->title }}".
 </p>
 <p>
-    Comment: {{ $comment->comment }}
+    Content: {{ $post->content }}
 </p>
 
 <p>
-    Thank you for using our blog application!
+    Thank you for using our Blog!
 </p>
 </body>
 </html>
