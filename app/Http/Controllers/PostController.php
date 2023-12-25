@@ -29,4 +29,30 @@ class PostController extends Controller {
         Post::create($input);
         return redirect(route('post'));
     }
+
+    public function editPost(Post $post) {
+        return view('editPost', compact('post'));
+    }
+
+    public function updatePost(Request $request, Post $post) {
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move("$destinationPath", "$profileImage");
+            $input['image'] = "$profileImage";
+        } else {
+            unset($input['image']);
+        }
+        $post->update($input);
+        return redirect()->route('post')
+            ->with('success','Post updated successfully');
+    }
+
+    public function deletePost($id) {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('post')
+            ->with('success','Post deleted successfully');
+    }
 }

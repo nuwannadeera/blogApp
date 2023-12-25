@@ -32,7 +32,14 @@ Route::get('/', [PostController::class, 'post'])
 Route::post('/add_post', [PostController::class, 'savePost'])
     ->name('savePost');
 
+Route::get('/edit_post/{post}', [PostController::class, 'editPost'])
+    ->name('editPost');
 
+Route::post('/edit_post/{post}', [PostController::class, 'updatePost'])
+    ->name('updatePost');
+
+Route::get('/delete_post/{post}', [PostController::class, 'deletePost'])
+    ->name('deletePost');
 
 
 

@@ -24,7 +24,8 @@
                     <div role="alert" class="alert alert-danger">{{$error}}</div>
                 @endforeach
 
-                <form action="{{route('savePost')}}" method="POST" enctype="multipart/form-data" style="width: 700px;margin-left: 210px">
+                <form action="{{route('savePost')}}" method="POST" enctype="multipart/form-data"
+                      style="width: 700px;margin-left: 210px">
                     @csrf
                     <div class="form-group">
                         <label style="font-weight: bold">Title</label>
@@ -40,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label style="font-weight: bold">Image</label>
-                        <input type="file" class="form-control" name="image" placeholder="Add Image">
+                            <input type="file" class="form-control" name="image" placeholder="Add Image">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success">Save Post</button>
@@ -66,8 +67,8 @@
                                 <img src="/images/{{$data->image}}" width="100px" height="100px">
                             </td>
                             <td>
-                                <a href="/deletePost/{{$data->id}}" class="btn btn-dark">Delete Task</a>
-                                <a href="/updatePost/{{$data->id}}" class="btn btn-dark">Update Task</a>
+                                <a href="{{route('editPost',$data->id)}}" class="btn btn-dark">Edit</a>
+                                <a href="{{route('deletePost',$data->id)}}}" class="btn btn-dark">Delete</a>
                             </td>
                         </tr>
                     @endforeach
