@@ -40,9 +40,9 @@ class myNotification extends Mailable {
      * Get the message content definition.
      */
     public function content(): Content {
-//        return new Content(
-//            view: 'mail.viewMail'
-//        );
+        return new Content(
+            view: 'mail.viewMail'
+        );
     }
 
     /**
@@ -54,9 +54,9 @@ class myNotification extends Mailable {
         return [];
     }
 
-    public function build() {
-        return $this->view('Mail.myNotification')
-            ->subject('New Comment on Your Post')
-            ->with(['post' => $this->post, 'comment' => $this->comment]);
-    }
+//    public function build() {
+//        return $this->view('Mail.myNotification')
+//            ->subject('New Comment on Your Post')
+//            ->with(['post' => $this->post, 'comment' => $this->comment]);
+//    }
 }

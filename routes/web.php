@@ -25,6 +25,7 @@ Route::get('/getPostsComments', [DataController::class, 'getPostsWithComments'])
     ->name('getPostsWithComments');
 
 
+
 //------post crud operation routes
 Route::get('/', [PostController::class, 'post'])
     ->name('post');
@@ -43,10 +44,7 @@ Route::get('/delete_post/{post}', [PostController::class, 'deletePost'])
 
 
 
-
-
-
-
 //------MailController Routes
 
-//Route::get('/sendMail', [MailController::class, 'sendMailOnPost'])->name('sendMailOnPost');
+Route::get('/sendMail/{post}', [MailController::class, 'sendMailOnPost'])
+    ->name('sendMailOnPost');

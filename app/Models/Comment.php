@@ -25,14 +25,12 @@ class Comment extends Model {
 
     use HasFactory;
 
-    public static function boot() {
-        parent::boot();
-
-        static::created(function ($comment) {
-            $post = $comment->post;
-            $authorEmail = $post->author;
-
-            Mail::to($authorEmail)->send(new myNotification($post, $comment));
-        });
-    }
+//    public static function boot() {
+//        parent::boot();
+//        static::created(function ($comment) {
+//            $post = $comment->post;
+//            $authorEmail = $post->author;
+//            Mail::to($authorEmail)->send(new myNotification($post, $comment));
+//        });
+//    }
 }

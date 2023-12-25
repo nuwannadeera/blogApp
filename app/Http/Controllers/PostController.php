@@ -12,14 +12,16 @@ class PostController extends Controller {
     }
 
     function savePost(Request $request) {
+        //validations in save method
         $request->validate([
             'content' => 'required',
             'image' => 'required',
             'title' => 'required|max:100',
             'author' => 'required'
         ]);
-
         $input = $request->all();
+
+        //check the image type and save it in another directory
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -27,6 +29,7 @@ class PostController extends Controller {
             $input['image'] = "$profileImage";
         }
         Post::create($input);
+//        route('sendMailOnPost')->with('post',$request);
         return redirect(route('post'));
     }
 
@@ -36,6 +39,8 @@ class PostController extends Controller {
 
     public function updatePost(Request $request, Post $post) {
         $input = $request->all();
+
+//        check if the image change or not
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -50,6 +55,7 @@ class PostController extends Controller {
     }
 
     public function deletePost($id) {
+//        delete post by its id
         $post = Post::find($id);
         $post->delete();
         return redirect()->route('post')
